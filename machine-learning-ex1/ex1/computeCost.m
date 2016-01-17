@@ -17,9 +17,9 @@ J = 0;
 % size(y) == [97 1]
 % size(theta) == [2 1]
 
-for i = 1:m,
-  J += (theta' * X(i,:)' - y(i))^2;
-end;
+for i = 1:m
+    J += (theta' * X(i,:)' - y(i))^2;
+end
 
 J = J / (2*m);
 
