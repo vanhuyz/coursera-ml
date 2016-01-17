@@ -26,12 +26,15 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+% size(X) == [47 2]
+% size(mu) == [1 2]
+% size(sigma) == [1 2]
 
+mu = mean(X);
+sigma = std(X);
 
-
-
-
-
+% X_norm = (X - mu) ./ sigma;
+X_norm = bsxfun(@rdivide, bsxfun(@minus, X, mu), sigma);
 
 
 % ============================================================
