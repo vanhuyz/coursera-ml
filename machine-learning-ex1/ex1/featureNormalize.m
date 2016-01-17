@@ -33,9 +33,11 @@ sigma = zeros(1, size(X, 2));
 mu = mean(X);
 sigma = std(X);
 
-% X_norm = (X - mu) ./ sigma;
 X_norm = bsxfun(@rdivide, bsxfun(@minus, X, mu), sigma);
 
+% this is ok too
+% o = ones(size(X,1),1);
+% X_norm = (X .- o*mu ) ./ (o*sigma);
 
 % ============================================================
 
