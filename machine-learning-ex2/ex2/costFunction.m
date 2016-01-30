@@ -21,9 +21,21 @@ grad = zeros(size(theta));
 %
 
 
+for i = 1:m
+    h = sigmoid(X(i,:) * theta);
+    J += -y(i)*log(h) - (1 - y(i))*log(1-h);
+end
 
+J = J / m;
 
+for j = 1:size(theta)
+    for i = 1:m
+        h = sigmoid(X(i,:) * theta);
+        grad(j) += (h - y(i)) * X(i,j);
+    end
+end
 
+grad = grad / m;
 
 
 
