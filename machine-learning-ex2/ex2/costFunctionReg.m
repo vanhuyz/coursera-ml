@@ -26,23 +26,23 @@ end
 J = J / m + norm(theta(2:size(theta)))^2 * lambda / (2*m);
 
 
-% Gradient
-for j = 1:size(theta)
-    for i = 1:m
-        h = sigmoid(X(i,:) * theta);
-        grad(j) += (h - y(i)) * X(i,j);
-    end
-    if j > 1
-      grad(j) += lambda * theta(j);
-    end
-end
+% Gradient (loop version)
+% for j = 1:size(theta)
+%     for i = 1:m
+%         h = sigmoid(X(i,:) * theta);
+%         grad(j) += (h - y(i)) * X(i,j);
+%     end
+%     if j > 1
+%       grad(j) += lambda * theta(j);
+%     end
+% end
 
-grad = grad / m;
+% grad = grad / m;
 
-
-
-
-
+% Gradient (vectorize)
+n = size(theta);
+grad(1) = X(:,1)'*(sigmoid(X*theta)-y)/m;
+grad(2:n) = X(:,2:n)'*(sigmoid(X*theta)-y)/m + lambda*theta(2:n)/m;
 
 % =============================================================
 
