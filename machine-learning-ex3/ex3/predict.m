@@ -21,11 +21,18 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% size(Theta1) 25x401
+% size(Theta2) 10x26
+% size(X)      5000x400
 
+X = [ones(m, 1) X];
 
+  
+A2 = sigmoid(X * Theta1');
+A2 = [ones(m,1), A2];
 
-
-
+H = sigmoid(A2 * Theta2');
+[_,p] = max(H, [], 2);
 
 
 
