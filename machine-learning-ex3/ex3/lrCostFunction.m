@@ -36,13 +36,18 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+h = sigmoid(X * theta);
+% unregularized cost
+J = (-y' * log(h) - (1 - y') * log(1 - h)) / m;
+% regularized cost
+J = J +  norm(theta(2:end))^2 * lambda / (2*m);
 
-
-
-
-
-
-
+% unregularized gradient
+grad = X'* (sigmoid(X*theta) - y) / m ;
+% regularized gradient
+temp = theta;
+temp(1) = 0;
+grad = grad + lambda/m * temp;
 
 
 % =============================================================
