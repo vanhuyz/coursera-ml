@@ -79,12 +79,20 @@ A1 = [ones(m,1) X];                      % 5000 x 401
 A2 = [ones(m,1) sigmoid(A1 * Theta1')];  % 5000 x 26 
 h = sigmoid(A2 * Theta2');               % 5000 x 10
 
-% calculate cost function J using a loop (without regularization)
-for i = 1:m
-  for k = 1:num_labels
-    J += -Y(i,k) * log(h(i,k)) - (1-Y(i,k)) * log(1 - h(i,k));
-  end
-end
+% calculate cost function J  (without regularization)
+
+% using loops
+% for i = 1:m
+%   for k = 1:num_labels
+%     J += -Y(i,k) * log(h(i,k)) - (1-Y(i,k)) * log(1 - h(i,k));
+%   end
+% end
+
+% without loops
+%J = sum((-Y .* log(h) - (1-Y) .* log(1-h))(:));
+
+% vectorize
+J = -Y(:)' * log(h(:)) - (1-Y(:))' * log(1-h(:));
 
 J = J/m;
 
