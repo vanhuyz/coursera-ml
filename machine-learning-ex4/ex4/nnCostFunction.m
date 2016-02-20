@@ -62,7 +62,31 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% X          5000 x 400
+% y          5000 x 1
+% nn_params 10285 x 1
+% Theta1       25 x 401
+% Theta2       10 x 26
 
+% mapping y to Y
+Y = zeros(m,num_labels);  % 5000 x 10
+for i = 1:m
+  Y(i,y(i)) = 1;
+end
+
+% calculate h_theta
+A1 = [ones(m,1) X];                      % 5000 x 401
+A2 = [ones(m,1) sigmoid(A1 * Theta1')];  % 5000 x 26 
+h = sigmoid(A2 * Theta2');               % 5000 x 10
+
+% calculate cost function J using a loop
+for i = 1:m
+  for k = 1:num_labels
+    J += -Y(i,k) * log(h(i,k)) - (1-Y(i,k)) * log(1 - h(i,k));
+  end
+end
+
+J = J/m;
 
 
 
