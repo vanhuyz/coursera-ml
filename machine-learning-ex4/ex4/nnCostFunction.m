@@ -109,11 +109,16 @@ J += (sum(Theta1(:,2:end)(:).^2) + sum(Theta2(:,2:end)(:).^2)) * lambda / (2*m) 
 delta3 = h - Y;                                            % 5000 x 10
 delta2 = (delta3*Theta2(:,2:end)) .* sigmoidGradient(Z2);  % 5000 x 25 
 
-Delta1 = delta2' * A1; % 25 x 401
-Delta2 = delta3' * A2; % 10 x 26
+Delta1 = delta2' * A1;  % 25 x 401
+Delta2 = delta3' * A2;  % 10 x 26
 
-Theta1_grad = Delta1/m;
-Theta2_grad = Delta2/m; 
+Theta1_grad = Delta1/m; % 25 x 401
+Theta2_grad = Delta2/m; % 10 x 26
+
+% regulize Theta_grad
+Theta1_grad(:,2:end) += Theta1(:,2:end) * lambda/m;
+Theta2_grad(:,2:end) += Theta2(:,2:end) * lambda/m; 
+
 % -------------------------------------------------------------
 
 % =========================================================================
