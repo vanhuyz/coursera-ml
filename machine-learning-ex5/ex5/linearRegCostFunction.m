@@ -27,7 +27,8 @@ h = X * theta;
 J = (h - y)' * (h - y) + lambda * sum(theta(2:end).^2);
 J /= 2*m;
 
-grad = X' * (h-y);
+grad = X' * (h-y) / m;
+grad(2:end) += lambda * theta(2:end) / m;
 
 
 
