@@ -27,6 +27,16 @@ centroids = zeros(K, n);
 %
 
 
+for i = 1:K
+  % set of examples that are assigned to centroid i (remain zero if not assigned)
+  Ck = X .* (idx == i);
+
+  % Remove zero rows
+  Ck( all(~Ck,2), : ) = [];
+
+  % calculate mean
+  centroids(i, :) = mean(Ck);
+end
 
 
 
