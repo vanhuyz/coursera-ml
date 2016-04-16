@@ -26,11 +26,11 @@ for epsilon = min(pval):stepsize:max(pval)
     predictions = (pval < epsilon);
 
     % true positives
-    tp = sum(yval  &  predictions);
+    tp = sum(predictions & yval);
     % false positives
-    fp = sum(!yval &  predictions);
+    fp = sum(predictions & !yval);
     % false negatives
-    fn = sum(yval  & !predictions);
+    fn = sum(!predictions & yval);
 
     prec = tp / (tp + fp);
     rec  = tp / (tp + fn);
