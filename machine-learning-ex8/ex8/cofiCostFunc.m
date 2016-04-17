@@ -53,11 +53,12 @@ X_grad = R .* (X*Theta' - Y) * Theta;
 Theta_grad = (R .* (X*Theta' - Y))' * X;
 
 
+% regularized
 
+J += (sum(sum(Theta.^2)) + sum(sum(X.^2))) * lambda/2;
 
-
-
-
+X_grad += lambda * X;
+Theta_grad += lambda * Theta;
 
 
 
