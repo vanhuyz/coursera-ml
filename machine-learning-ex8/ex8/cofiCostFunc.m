@@ -42,8 +42,12 @@ Theta_grad = zeros(size(Theta));
 
 
 
+% size(Theta) 4 x 3
+% size(X)     5 x 3
+% size(Y)     5 x 4
+% size(R)     5 x 4
 
-
+J = sum(sum(R .* (X*Theta' - Y) .^2)) / 2;
 
 
 
